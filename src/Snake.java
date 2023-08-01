@@ -8,8 +8,10 @@ public class Snake {
     private int h = Game.height;
     private int d = Game.dimension;
 
+    private String move;
 
-    public Snake(){
+
+    public Snake() {
         body = new ArrayList<>();
 
         // Initialize Snake
@@ -25,6 +27,56 @@ public class Snake {
         temp.setLocation((w / 2 - 2) * d, (h / 2 - 2) * d);
         body.add(temp);
 
+        move = "NOTHING";
+
+    }
+
+    public void move() {
+
+        if (move != "NOTHING") {
+
+            Rectangle first = body.get(0);
+
+            Rectangle temp = new Rectangle(Game.dimension, Game.dimension);
+
+            if (move == "UP") {
+
+                temp.setLocation(first.x, first.y - Game.dimension);
+
+            } else if (move == "DOWN") {
+
+                temp.setLocation(first.x, first.y + Game.dimension);
+            } else if (move == "LEFT") {
+                temp.setLocation(first.x - Game.dimension, first.y);
+            } else {
+                temp.setLocation(first.x + Game.dimension, first.y);
+            }
+
+            body.add(0, temp);
+            body.remove(body.size() - 1);
+        }
+
+    }
+
+    public void grow() {
+        Rectangle first = body.get(0);
+
+        Rectangle temp = new Rectangle(Game.dimension, Game.dimension);
+
+        if (move == "UP") {
+
+            temp.setLocation(first.x, first.y - Game.dimension);
+
+        } else if (move == "DOWN") {
+
+            temp.setLocation(first.x, first.y + Game.dimension);
+        } else if (move == "LEFT") {
+            temp.setLocation(first.x - Game.dimension, first.y);
+        } else {
+            temp.setLocation(first.x + Game.dimension, first.y);
+        }
+
+        body.add(0, temp);
     }
 
 
@@ -34,6 +86,23 @@ public class Snake {
 
     public void setBody(ArrayList<Rectangle> body) {
         this.body = body;
+    }
+
+
+    public void up() {
+        move = "UP";
+    }
+
+    public void down() {
+        move = "DOWN";
+    }
+
+    public void left() {
+        move = "LEFT";
+    }
+
+    public void right() {
+        move = "RIGHT";
     }
 
 
