@@ -36,15 +36,11 @@ public class Snake {
         if (move != "NOTHING") {
 
             Rectangle first = body.get(0);
-
             Rectangle temp = new Rectangle(Game.dimension, Game.dimension);
 
             if (move == "UP") {
-
                 temp.setLocation(first.x, first.y - Game.dimension);
-
             } else if (move == "DOWN") {
-
                 temp.setLocation(first.x, first.y + Game.dimension);
             } else if (move == "LEFT") {
                 temp.setLocation(first.x - Game.dimension, first.y);
@@ -59,16 +55,14 @@ public class Snake {
     }
 
     public void grow() {
+
         Rectangle first = body.get(0);
 
         Rectangle temp = new Rectangle(Game.dimension, Game.dimension);
 
         if (move == "UP") {
-
             temp.setLocation(first.x, first.y - Game.dimension);
-
         } else if (move == "DOWN") {
-
             temp.setLocation(first.x, first.y + Game.dimension);
         } else if (move == "LEFT") {
             temp.setLocation(first.x - Game.dimension, first.y);
@@ -88,6 +82,14 @@ public class Snake {
         this.body = body;
     }
 
+    public int getX() {
+        return body.get(0).x;
+    }
+
+    public int getY() {
+        return body.get(0).y;
+    }
+
 
     public void up() {
         move = "UP";
@@ -104,6 +106,4 @@ public class Snake {
     public void right() {
         move = "RIGHT";
     }
-
-
 }
