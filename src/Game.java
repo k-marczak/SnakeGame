@@ -7,15 +7,18 @@ public class Game implements KeyListener {
     private Snake player;
     private Food food;
     private Graphics graphics;
+
     private JFrame window;
+
     public static final int width = 30;
     public static final int height = 30;
     public static final int dimension = 20;
 
 
-    public Game() {
 
+    public Game(){
         window = new JFrame();
+
         player = new Snake();
         food = new Food(player);
         graphics = new Graphics(this);
@@ -27,15 +30,15 @@ public class Game implements KeyListener {
         window.setVisible(true);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+
     }
 
-
-    public void start() {
+    public void start(){
         graphics.state = "RUNNING";
     }
 
 
-    public void update() {
+    public void update(){
         if(graphics.state == "RUNNING") {
             if(check_food_collision()) {
                 player.grow();
@@ -51,7 +54,8 @@ public class Game implements KeyListener {
 
 
     public boolean check_wall_collision() {
-        if (player.getX() < 0 || player.getX() >= width * dimension || player.getY() < 0 || player.getY() > height * dimension) {
+        if (player.getX() < 0 || player.getX() >= width * dimension ||
+                player.getY() < 0 || player.getY() > height * dimension) {
             return true;
         }
         return false;
@@ -68,7 +72,7 @@ public class Game implements KeyListener {
 
     public boolean check_self_collision() {
 
-        for (int i = 0; i < player.getBody().size(); i++) {
+        for (int i = 1; i < player.getBody().size(); i++) {
             if (player.getX() == player.getBody().get(i).x && player.getY() == player.getBody().get(i).y) {
                 return true;
             }
